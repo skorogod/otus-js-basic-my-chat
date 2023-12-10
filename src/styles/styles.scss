@@ -1,0 +1,74 @@
+$padding: 1rem;
+
+.link {
+    text-decoration: none;
+    color: whitesmoke;
+}
+
+.header {
+    height: 50px;
+    background-color: rgba(0, 0, 0, 0.747);
+    padding: 10px;
+
+    .navbar {
+        height: 100%;
+        .brand-container {
+            height: 100%;
+
+            .brand {
+                height: 50px;
+                display: table-cell;
+                vertical-align: middle;
+            }
+        }
+    }
+}
+
+.main {
+    display: flex;
+    flex-direction: column;
+    max-width: 1040px;
+    margin: 2rem auto;
+
+    .messages-list {
+        height: 60vh;
+        border: 1px solid #000;
+        border-radius: 5px;
+        padding: 1rem;
+        overflow-x: scroll;
+
+
+        .message {
+            display: inline-block;
+            padding: 1rem;
+            background-color: bisque;
+            border: 1px solid;
+            border-radius: 10px;
+
+        }
+    }
+
+    .new-message {
+        margin-top: 2rem;
+        display: flex;
+        justify-content: space-between;
+
+        .new-message__input {
+           flex-basis: 85%;
+           [name='message-text'] {
+                width: 100%;
+           }
+        }
+
+        .new-message__submit {
+            min-width: 50px;
+            align-self: center;
+
+            .input-submit{
+                width: 100%;      
+            }
+        }
+    }
+
+
+}
