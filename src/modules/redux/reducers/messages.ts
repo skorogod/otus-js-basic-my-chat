@@ -25,7 +25,7 @@ const message: Reducer = (state: addMessageState, action) => {
 const messages: Reducer = (state = [], action) => {
   switch (action.type) {
     case "ADD_MESSAGE":
-      console.log(action)
+      console.log(action);
       if (state.map((m: addMessageState) => m.id).includes(action.id)) {
         return state;
       } else {

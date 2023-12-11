@@ -20,6 +20,7 @@
     "@babel/core": "^7.23.5",
     "@babel/preset-env": "^7.23.5",
     "@babel/preset-typescript": "^7.23.3",
+    "@jest/globals": "^29.7.0",
     "@types/jest": "^29.5.11",
     "@typescript-eslint/eslint-plugin": "^6.13.2",
     "@typescript-eslint/parser": "^6.13.2",
@@ -29,8 +30,10 @@
     "babel-loader": "^9.1.3",
     "css-loader": "^6.8.1",
     "eslint": "^8.55.0",
+    "eslint-config-prettier": "^9.1.0",
     "eslint-config-standard-with-typescript": "^40.0.0",
     "eslint-plugin-import": "^2.29.0",
+    "eslint-plugin-jest": "^27.6.0",
     "eslint-plugin-n": "^16.3.1",
     "eslint-plugin-prettier": "^5.0.1",
     "eslint-plugin-promise": "^6.1.1",
@@ -42,7 +45,7 @@
     "mini-css-extract-plugin": "^2.7.6",
     "postcss": "^8.4.32",
     "postcss-loader": "^7.3.3",
-    "prettier": "^3.1.0",
+    "prettier": "^3.1.1",
     "sass": "^1.69.5",
     "sass-loader": "^13.3.2",
     "style-loader": "^3.3.3",
@@ -54,9 +57,11 @@
     "webpack-dev-server": "^4.15.1"
   },
   "lint-staged": {
-    "*{ts, js, tsx, jsx}": "prettier . --write && eslint . --fix"
+    "*.{ts, js, tsx, jsx}": "prettier --write && eslint --fix",
+    "*.{scss, css}": "prettier  --write"
   },
   "dependencies": {
+    "emoji-picker-element": "^1.20.1",
     "firebase": "^10.7.1",
     "redux": "^5.0.0",
     "redux-thunk": "^3.1.0"

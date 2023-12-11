@@ -1,29 +1,41 @@
-<!DOCTYPE html>
+<!doctype html>
 <html lang="en">
-<head>
-    <meta charset="UTF-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
     <title>Document</title>
-</head>
-<body>
+  </head>
+  <body>
     <header class="header">
-        <nav class="navbar">
-            <div class="brand-container">
-                <a class="brand link" href="#">MyCHAT</a>
-            </div>
-        </nav>
+      <nav class="navbar">
+        <div class="brand-container">
+          <a class="brand link" href="#">MyCHAT</a>
+        </div>
+      </nav>
     </header>
     <main class="main">
-        <section class="messages-list"></section>
-        <section class="new-message">
-            <div class="new-message__input">
-                <textarea name="message-text" class="message-text" cols="30" rows="10"></textarea>
-            </div>
-            <div class="new-message__submit">
-                <input id="submit-btn" class="input-submit" type="submit" value="send">
-            </div>
-        </section>
+      <section class="messages-list"></section>
+      <section class="new-message">
+        <div class="new-message__input">
+          <textarea
+            name="message-text"
+            class="message-text"
+            cols="30"
+            rows="10"
+          ></textarea>
+          <div class="new-message__btns">
+            <input
+              id="submit-btn"
+              class="input-submit"
+              type="submit"
+              value="send"
+            />
+            <button class="emoji-btn">Smiles</button>
+          </div>
+        </div>
+        <emoji-picker class="picker hidden" id="emoji-picker"></emoji-picker>
+      </section>
     </main>
     <footer class="footer"></footer>
-</body>
+  </body>
 </html>

@@ -1,4 +1,3 @@
-import messages from "../reducers/messages";
 import { Dispatch } from "redux";
 import {
   ref,
@@ -7,10 +6,7 @@ import {
   orderByKey,
   limitToLast,
 } from "firebase/database";
-import { app, db } from "../config";
-import { getAuth, signInAnonymously } from "firebase/auth";
-
-
+import { db } from "../config";
 
 export const addMessage = (msg: any) => ({
   type: "ADD_MESSAGE",
@@ -55,22 +51,3 @@ export const receiveMessages = (messages: []) => {
     dispatch(receivedMessages());
   };
 };
-
-// export const login = () => {
-//   return (dispatch: any) => {
-//     dispatch(startAuthorizing());
-//     const auth = getAuth(app);
-//     signInAnonymously(auth).then(() => {
-//       dispatch(userAuthorized());
-//       dispatch(fetchMessages());
-//     });
-//   };
-// };
-
-// export const startAuthorizing = () => ({
-//   type: "USER_START_AUTHORIZING",
-// });
-
-// export const userAuthorized = () => ({
-//   type: "USER_AUTHORIZED",
-// });

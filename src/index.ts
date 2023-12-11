@@ -1,50 +1,56 @@
-import "./styles/styles.scss"
+import "./styles/styles.scss";
+import 'emoji-picker-element'
 
-import { fetchMessages } from "./modules/redux/actions";
-
-import { addNewMessage } from "./modules/addNewMessage";
 import { store } from "./modules/redux/store";
+
+import { renderMessage, renderMessages } from "./modules/renderMessage";
+import { fetchMessages } from "./modules/redux/actions";
 import { Message } from "./modules/types";
-import { addMessageDb } from "./modules/firebaseAPI";
+import { insertMessage } from "./modules/firebaseAPI";
 
 window.onload = function () {
-    const sendBtn = document.querySelector('#submit-btn');
-    const messages = document.querySelector(".messages-list");
+	const inputMessage = document.querySelector(".message-text") as HTMLTextAreaElement
+  const sendBtn = document.querySelector("#submit-btn");
+  const messages = document.querySelector(".messages-list") as HTMLElement;
+  const emojiBtn = document.querySelector(".emoji-btn");
+  const emojiPicker = document.querySelector("#emoji-picker")
 
-    document.addEventListener('load', store.dispatch(fetchMessages() as any))
-    
-    if(sendBtn) {
-        sendBtn.addEventListener("click", function() {
-            const inputMessage = document.querySelector('.message-text') as HTMLTextAreaElement;
-            
-            if (inputMessage && inputMessage.value) {
-                const msg: Omit<Message, 'id'> = {
-                    text: inputMessage?.value,
-                    dateTime: Date.now()
-                }
-                addMessageDb(msg)
-            };
-            
-            inputMessage.value = '';
-        })
-    }
+  document.addEventListener("load", store.dispatch(fetchMessages() as any));
 
-    function renderMessages() {
-        const state = store.getState();
-        const messagesList: Message[] = state.chatroom.messages;
-        const messagesEls = Array.from(document.querySelectorAll('.messages-list .message'));
+  if (emojiBtn && emojiPicker) {
+		emojiPicker.addEventListener('emoji-click', (event: any)=> {
+			inputMessage.value += event.detail.unicode
+		} )
 
-        const messagesIds = messagesEls.map(el => el.id)
-        console.log(messagesIds)
+		emojiBtn.addEventListener("click", function() {
+			if (emojiPicker.classList.contains('hidden')) {
+				emojiPicker.classList.remove('hidden');
+			}
+			else {
+				emojiPicker.classList.add('hidden')
+			}
+		})
+	}
 
-        messagesList.forEach(el => {
-            if (!messagesIds.includes(el.id)) {
-                addNewMessage(messages as HTMLElement, el.id, el.text)
-            }
-        }
-    )
-    }
+  if (messages) {
+    store.subscribe(() => renderMessages(messages));
+  }
 
-    store.subscribe(() => renderMessages())
+  if (sendBtn) {
+    sendBtn.addEventListener("click", function () {
+      const inputMessage = document.querySelector(
+        ".message-text",
+      ) as HTMLTextAreaElement;
 
-}
+      if (inputMessage && inputMessage.value) {
+        const msg: Omit<Message, "id"> = {
+          text: inputMessage?.value,
+          dateTime: Date.now(),
+        };
+        insertMessage(msg);
+      }
+
+      inputMessage.value = "";
+    });
+  }
+};
