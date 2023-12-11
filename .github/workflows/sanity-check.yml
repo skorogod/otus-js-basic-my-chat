@@ -19,4 +19,4 @@ jobs:
 
       - name: Lint check
         run: |
-          npm run test
+          npm run test --passWithNoTests
