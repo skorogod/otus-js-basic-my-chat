@@ -7,7 +7,6 @@ import { renderMessages } from "./modules/renderMessage";
 import { fetchMessages, sendMessage } from "./modules/redux/actions";
 import { Message } from "./modules/types";
 
-
 window.onload = function () {
   const inputMessage = document.querySelector(
     ".message-text",
@@ -48,7 +47,7 @@ window.onload = function () {
           text: inputMessage?.value,
           dateTime: Date.now(),
         };
-        store.dispatch(sendMessage(msg))
+        store.dispatch(sendMessage(msg));
       }
       inputMessage.value = "";
     });

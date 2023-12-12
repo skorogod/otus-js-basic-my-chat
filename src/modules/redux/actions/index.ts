@@ -1,4 +1,4 @@
-import { Dispatch} from "redux";
+import { Dispatch } from "redux";
 import {
   ref,
   onValue,
@@ -14,16 +14,18 @@ export const addMessage = (msg: any) => ({
   ...msg,
 });
 
-export const sendMessage = (msg: any) => (dispatch: Dispatch, getState: Function) => {
-  insertMessage(msg).then((id) => {
-    console.log(id)
-    dispatch({
-                type: "ADD_MESSAGE",
-                id: id, ...msg
-              })
-            })
-  .catch((error) => alert(`Error: ${error}`))
-}
+export const sendMessage =
+  (msg: any) => (dispatch: Dispatch, getState: Function) => {
+    insertMessage(msg)
+      .then((id) => {
+        dispatch({
+          type: "ADD_MESSAGE",
+          id: id,
+          ...msg,
+        });
+      })
+      .catch((error) => alert(`Error: ${error}`));
+  };
 
 export const setUserName = (name: String) => ({
   type: "SET_USER_NAME",

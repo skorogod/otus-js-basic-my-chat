@@ -9,7 +9,8 @@ export function insertMessage(msg: Omit<Message, "id">) {
       id: messageId,
       text: msg.text,
       dateTime: msg.dateTime,
-    }).then(() => res(messageId))
-      .catch((err) => rej(err))
-  })
+    })
+      .then(() => res(messageId))
+      .catch((err) => rej(err));
+  });
 }

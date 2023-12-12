@@ -9,9 +9,9 @@ export function renderMessages(container: HTMLElement) {
   );
 
   const messagesIds = messagesEls.map((el) => el.id);
-  console.log(messagesIds)
+  console.log(messagesIds);
   messagesList.forEach((el) => {
-    console.log("ID " + el)
+    console.log("ID " + el);
     if (!messagesIds.includes(el.id)) {
       renderMessage(container, el.id, el.text);
     }

@@ -1,13 +1,13 @@
 import { Reducer } from "redux";
 import { addMessageState } from "../../types";
 
-export const message:Reducer= (state: addMessageState, action) => {
+export const message: Reducer = (state: addMessageState, action) => {
   switch (action.type) {
     case "ADD_MESSAGE":
       return {
         id: action.id,
         text: action.text,
-        datetime: action.dateTime,
+        dateTime: action.dateTime,
       };
     default:
       return state;
