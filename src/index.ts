@@ -3,10 +3,10 @@ import "emoji-picker-element";
 
 import { store } from "./modules/redux/store";
 
-import { renderMessage, renderMessages } from "./modules/renderMessage";
-import { fetchMessages } from "./modules/redux/actions";
+import { renderMessages } from "./modules/renderMessage";
+import { fetchMessages, sendMessage } from "./modules/redux/actions";
 import { Message } from "./modules/types";
-import { insertMessage } from "./modules/firebaseAPI";
+
 
 window.onload = function () {
   const inputMessage = document.querySelector(
@@ -48,9 +48,8 @@ window.onload = function () {
           text: inputMessage?.value,
           dateTime: Date.now(),
         };
-        insertMessage(msg);
+        store.dispatch(sendMessage(msg))
       }
-
       inputMessage.value = "";
     });
   }

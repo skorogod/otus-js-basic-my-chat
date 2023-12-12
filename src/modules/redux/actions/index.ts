@@ -1,4 +1,4 @@
-import { Dispatch } from "redux";
+import { Dispatch} from "redux";
 import {
   ref,
   onValue,
@@ -7,11 +7,23 @@ import {
   limitToLast,
 } from "firebase/database";
 import { db } from "../config";
+import { insertMessage } from "../../firebaseAPI";
 
 export const addMessage = (msg: any) => ({
   type: "ADD_MESSAGE",
   ...msg,
 });
+
+export const sendMessage = (msg: any) => (dispatch: Dispatch, getState: Function) => {
+  insertMessage(msg).then((id) => {
+    console.log(id)
+    dispatch({
+                type: "ADD_MESSAGE",
+                id: id, ...msg
+              })
+            })
+  .catch((error) => alert(`Error: ${error}`))
+}
 
 export const setUserName = (name: String) => ({
   type: "SET_USER_NAME",
